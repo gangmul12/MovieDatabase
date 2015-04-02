@@ -1,10 +1,15 @@
 public class MovieDatabase {
+	private MyLinkedList<Genre> genres;
 	public MovieDatabase() {
+		genres = new MyLinkedList<Genre>();
 		// FIXME implement this
 		// Maintain a linked list of Genre using MyLinkedList
 	}
 
 	public void insert(String genre, String title) {
+		genres.add(new Genre(genre));
+		
+		
 		// FIXME implement this
 		// Insert the given genre and title to the MovieDatabase.
 		// Printing functionality is provided for the sake of debugging.
