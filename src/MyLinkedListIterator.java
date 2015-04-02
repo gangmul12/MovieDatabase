@@ -1,27 +1,28 @@
 import java.util.Iterator;
 
 public class MyLinkedListIterator<T extends Comparable<T>> implements Iterator<T> {
-	// FIXME implement this
-	// Implement the iterator for MyLinkedList.
-	// You have to maintain the current position of the iterator.
 
-	// Remove below annotation(@SuppressWarnings("unused")) after you implement this iterator.
-	// This annotation tells compiler that "Do not warn me about this variable not being used".
-	@SuppressWarnings("unused")
 	private final MyLinkedList<T> l;
+	private Node<T> index;
 
 	public MyLinkedListIterator(MyLinkedList<T> myLinkedList) {
 		this.l = myLinkedList;
+		this.index=l.getHead();
 	}
 
 	@Override
 	public boolean hasNext() {
-		return false;
+		if(index==null)
+			return false;
+		else return true;
 	}
 
 	@Override
 	public T next() {
-		return null;
+		T result = index.getItem();
+		index=index.getNext();
+		return result;
+		
 	}
 
 	@Override
