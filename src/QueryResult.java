@@ -25,16 +25,14 @@ public class QueryResult implements Comparable<QueryResult> {
 			return 1;
 		else if(this.genre.compareToIgnoreCase(other.genre)<0)
 			return -1;
-		else if(this.genre==other.genre)
+		else{
 			if(this.title.compareToIgnoreCase(other.title)>0)
 				return 1;
 			else if(this.title.compareToIgnoreCase(other.title)<0)
 				return -1;
 			else
 				return 0;
-				
-		// TODO delete the line below and implement this method
-		throw new UnsupportedOperationException();
+		}
 	}
 
 	@Override

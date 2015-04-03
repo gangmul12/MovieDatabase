@@ -38,16 +38,23 @@ public class MovieDatabase {
 	}
 
 	public MyLinkedList<QueryResult> search(String term) {
-		// FIXME implement this
-		// Search the given term from the MovieDatabase.
-		// You should return a linked list of QueryResult.
-		// The search command is handled at SearchCmd.java.
-		// Printing functionality is provided for the sake of debugging.
-		// This code should be removed before submitting your work.
-		System.err.printf("[trace] SEARCH [%s]\n", term);
+		MyLinkedList<QueryResult> result = new MyLinkedList<QueryResult>();
+		
+		MyLinkedListIterator<Genre> git = (MyLinkedListIterator<Genre>)genres.iterator();
 
-		MyLinkedList<QueryResult> results = new MyLinkedList<QueryResult>();
+		while(git.hasNext()){
+			Genre tempGenre = git.next();
+			MyLinkedListIterator<String> sit = (MyLinkedListIterator<String>)tempGenre.getTitles().iterator();
+			while(sit.hasNext()){
+				String tempString = sit.next();
+				
+				if(term==null||tempString.contains(term))
+					result.add(new QueryResult(tempGenre.toString(), tempString));
+			}
+			
+		}
+		
 
-		return results;
+		return result;
 	}
 }
