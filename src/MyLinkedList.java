@@ -29,10 +29,6 @@ class Node<T> {
 
 public class MyLinkedList<T extends Comparable<T>> implements Iterable<T> {
 	
-	// Implement a linked list.
-	// This linked list should maintain the items in a sorted order.
-	// This linked list should discard a duplicate.
-	
 
 	private Node<T> head = null;
 	private int size=0;
@@ -45,6 +41,9 @@ public class MyLinkedList<T extends Comparable<T>> implements Iterable<T> {
 	}
 	public Node<T> getHead(){
 		return head;
+	}
+	public boolean isEmpty(){
+		return (size==0)? true : false;
 	}
 
 	public boolean add(T obj) {
@@ -121,8 +120,7 @@ public class MyLinkedList<T extends Comparable<T>> implements Iterable<T> {
 
 	public T first() {
 		
-		// This is a helper method.
-		// You do not necessarily have to implement this but still might be useful to do so.
+		
 		if (head != null)
 			return head.item;
 		else
@@ -140,8 +138,27 @@ public class MyLinkedList<T extends Comparable<T>> implements Iterable<T> {
 			return prev.getNext().getItem();
 		}
 		
-		// This is a helper method.
-		// You do not necessarily have to implement this but still might be useful to do so.
-		
+	}
+	
+	//FIXME delete this method
+	public void print(){
+		MyLinkedListIterator<T> it = (MyLinkedListIterator<T>)this.iterator();
+		while(it.hasNext()){
+			System.out.println(it.next().toString());
+		}
+	}
+	//FIXME delete this method
+	public void printGenre(){
+		MyLinkedListIterator<Genre> git = (MyLinkedListIterator<Genre>)this.iterator();
+
+		while(git.hasNext()){
+			Genre temp = git.next();
+			MyLinkedListIterator<String> sit = (MyLinkedListIterator<String>)temp.getTitles().iterator();
+			System.out.println(temp.toString());
+			while(sit.hasNext()){
+				System.out.println(sit.next());
+			}
+			
+		}
 	}
 }

@@ -13,6 +13,10 @@ class Genre implements Comparable<Genre> {
 	public String getName(){
 		return genre;
 	}
+	public MyLinkedList<String> getTitles(){
+		return titles;
+	}
+	
 
 	@Override
 	public int compareTo(Genre other) {
@@ -49,4 +53,12 @@ class Genre implements Comparable<Genre> {
 	public String toString() {
 		return genre;
 	}
+	//FIXME delete this method
+	public void print(){
+		MyLinkedListIterator<String> it = (MyLinkedListIterator<String>)this.titles.iterator();
+		while(it.hasNext()){
+			System.out.println(it.next());
+		}
+	}
+	
 }
