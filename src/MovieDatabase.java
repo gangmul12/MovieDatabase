@@ -16,7 +16,7 @@ public class MovieDatabase {
 			}
 		}
 		target.getTitles().add(title);
-		genres.printGenre();
+		
 		
 	}
 
@@ -34,7 +34,7 @@ public class MovieDatabase {
 		if(target.getTitles().isEmpty()){
 			genres.remove(new Genre(genre));
 		}
-		genres.printGenre();
+		
 	}
 
 	public MyLinkedList<QueryResult> search(String term) {

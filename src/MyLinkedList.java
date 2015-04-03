@@ -104,6 +104,12 @@ public class MyLinkedList<T extends Comparable<T>> implements Iterable<T> {
 			if(cursor==null)
 				return true;
 			if(cursor.getItem().compareTo(obj)==0){
+				if(prev==cursor){
+					head=null;
+					size--;
+					return true;
+				}
+					
 				prev.setNext(cursor.getNext());
 				size--;
 				return true;
@@ -139,7 +145,7 @@ public class MyLinkedList<T extends Comparable<T>> implements Iterable<T> {
 		}
 		
 	}
-	
+	/*
 	//FIXME delete this method
 	public void print(){
 		MyLinkedListIterator<T> it = (MyLinkedListIterator<T>)this.iterator();
@@ -160,5 +166,5 @@ public class MyLinkedList<T extends Comparable<T>> implements Iterable<T> {
 			}
 			
 		}
-	}
+	}*/
 }
