@@ -14,7 +14,7 @@ public abstract class AbstractCommand implements Command {
 			int startIndex = args.indexOf("%");
 			int endIndex = args.indexOf("%", startIndex+1);
 			if(startIndex==-1||endIndex==-1)
-				throw new CommandParseException("No Command", "No argument", "Not Found %pair");
+				throw new CommandParseException("not print", "args", "Not Found %pair");
 			
 			if(args.indexOf("%", endIndex+1)==-1){//if second args not exists
 				String[] result = new String[1];
@@ -34,6 +34,10 @@ public abstract class AbstractCommand implements Command {
 				result[0]=result[0].replaceAll("\\s*$", "");
 			//parse input between the second %pair
 			startIndex = args.indexOf("%", endIndex+1);
+			String shouldEmpty = args.substring(endIndex+1, startIndex);
+			shouldEmpty=shouldEmpty.replace(" ", "");
+			if(!shouldEmpty.isEmpty())
+				throw new CommandParseException("Unknown",shouldEmpty,"there is string between %pairs");
 			endIndex = args.indexOf("%", startIndex+1);
 			if(endIndex==-1)
 				throw new CommandParseException("Insert Or Delete", args.substring(startIndex+1), "Not Found Closing %");
