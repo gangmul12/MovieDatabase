@@ -27,7 +27,7 @@ public class MyLinkedListIterator<T extends Comparable<T>> implements Iterator<T
 
 	@Override
 	public void remove() {
-		// This code does not have to be modified.
+		
 		throw new UnsupportedOperationException();
 	}
 }

@@ -19,19 +19,15 @@ public abstract class AbstractCommand implements Command {
 			if(args.indexOf("%", endIndex+1)==-1){//if second args not exists
 				String[] result = new String[1];
 				result[0]=args.substring(startIndex+1, endIndex);
-				if(result[0].charAt(0)==' ')
-					result[0]=result[0].replaceFirst("\\s*", "");
-				if(result[0].charAt(result[0].length()-1)==' ')
-					result[0]=result[0].replaceAll("\\s*$", "");
+				if(result[0].isEmpty())
+					throw new CommandParseException("Search", "arg", "Argument is Empty");
 				return result;
 			}
 			
 			String[] result = new String[2];
 			result[0]=args.substring(startIndex+1, endIndex);
-			if(result[0].charAt(0)==' ')
-				result[0]=result[0].replaceFirst("\\s*", "");
-			if(result[0].charAt(result[0].length()-1)==' ')
-				result[0]=result[0].replaceAll("\\s*$", "");
+			if(result[0].isEmpty())
+				throw new CommandParseException("Unknown", "arg", "Argument is Empty");
 			//parse input between the second %pair
 			startIndex = args.indexOf("%", endIndex+1);
 			String shouldEmpty = args.substring(endIndex+1, startIndex);
@@ -42,17 +38,12 @@ public abstract class AbstractCommand implements Command {
 			if(endIndex==-1)
 				throw new CommandParseException("Insert Or Delete", args.substring(startIndex+1), "Not Found Closing %");
 			result[1]=args.substring(startIndex+1, endIndex);
-			if(result[1].charAt(0)==' ')
-				result[1]=result[1].replaceFirst("\\s*", "");
-			if(result[1].charAt(result[1].length()-1)==' ')
-				result[1]=result[1].replaceAll("\\s*$", "");
+			if(result[1].isEmpty())
+				throw new CommandParseException("Unknown", "arg", "Argument is Empty");
 			
 			if(!args.substring(endIndex+1).replaceAll(" ", "").isEmpty())
 				throw new CommandParseException("Unknown",args.substring(endIndex+1),"has too many words");
 			return result;
-			// FIXME implement this
-			// Parse the input appropriately.
-			// You may need to change the return value.
 			
 		}
 	}

@@ -1,10 +1,12 @@
 class Genre implements Comparable<Genre> {
 	
+	//genre : holds genre name
+	//titles : LinkedList that holds title(String type) of movie at this genre
 	private String genre;
 	private MyLinkedList<String> titles;
-	// Implement a Genre class.
-	// This class should hold the name of the genre.
-	// This class should maintain a linked list of movie titles for this genre.
+	
+	
+	
 	public Genre(String name) {
 		this.genre=name;
 		this.titles = new MyLinkedList<String>();
@@ -25,6 +27,7 @@ class Genre implements Comparable<Genre> {
 	}
 
 	@Override
+	//Genre is only equal to other object when each name is same
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
@@ -52,13 +55,6 @@ class Genre implements Comparable<Genre> {
 	@Override
 	public String toString() {
 		return genre;
-	}
-	//FIXME delete this method
-	public void print(){
-		MyLinkedListIterator<String> it = (MyLinkedListIterator<String>)this.titles.iterator();
-		while(it.hasNext()){
-			System.out.println(it.next());
-		}
 	}
 	
 }

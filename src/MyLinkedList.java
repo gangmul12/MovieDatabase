@@ -2,10 +2,12 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 class Node<T> {
+	//MEMBER VARIABLE
 	
 	final T item;
 	private Node<T> next;
-
+	
+	//CONSTRUCTOR
 	public Node(T obj) {
 		this.item = obj;
 		this.next = null;
@@ -15,6 +17,7 @@ class Node<T> {
 		this.next = nextNode;
 	}
 	
+	//MEMBER METHOD
 	public T getItem(){
 		return item;
 	}
@@ -25,18 +28,18 @@ class Node<T> {
 		return next;
 	}
 	
-}
+}//CLASS NODE END
 
 public class MyLinkedList<T extends Comparable<T>> implements Iterable<T> {
 	
-
+	//MEMBER STATE
 	private Node<T> head = null;
 	private int size=0;
-
+	
+	//MEMBER METHOD
 	@Override
 	public Iterator<T> iterator() {
-		// This code does not have to be modified.
-		// Implement MyLinkedListIterator instead.
+		
 		return new MyLinkedListIterator<T>(this);
 	}
 	public Node<T> getHead(){
@@ -47,13 +50,14 @@ public class MyLinkedList<T extends Comparable<T>> implements Iterable<T> {
 	}
 
 	public boolean add(T obj) {
+		//FIRST ADD
 		if(head==null){
 				head = new Node<T>(obj);
 				size++;
 				return true;
 		}
 		else{
-			
+			//prev is followed by cursor
 			Node<T> cursor = head;
 			Node<T> prev = head;
 			Node<T> newNode = new Node<T>(obj);
@@ -63,14 +67,14 @@ public class MyLinkedList<T extends Comparable<T>> implements Iterable<T> {
 				cursor=cursor.getNext();			
 			}
 			
-			if(cursor==null){
+			if(cursor==null){//add at the first place
 				prev.setNext(newNode);
 				size++;
 				return true;
 			}
 			
 			if(cursor.getItem().compareTo(obj)==0)
-				return true;
+				return true;//if there is duplication
 			else{
 				if(cursor==head){
 					newNode.setNext(head);
@@ -84,14 +88,12 @@ public class MyLinkedList<T extends Comparable<T>> implements Iterable<T> {
 				size++;
 				return true;
 			}
-			
-				
-		}
-		
-	}
+					
+		}		
+	}// add end
 
 	public boolean remove(T obj) {
-		if(head==null)
+		if(head==null) // if list is empty
 			return true;
 		else{
 			Node<T> prev = head;
@@ -103,7 +105,7 @@ public class MyLinkedList<T extends Comparable<T>> implements Iterable<T> {
 			}
 			if(cursor==null)
 				return true;
-			if(cursor.getItem().compareTo(obj)==0){
+			if(cursor.getItem().compareTo(obj)==0){// if a node matched, the delete
 				if(prev==cursor){
 					head=null;
 					size--;
@@ -145,26 +147,4 @@ public class MyLinkedList<T extends Comparable<T>> implements Iterable<T> {
 		}
 		
 	}
-	/*
-	//FIXME delete this method
-	public void print(){
-		MyLinkedListIterator<T> it = (MyLinkedListIterator<T>)this.iterator();
-		while(it.hasNext()){
-			System.out.println(it.next().toString());
-		}
-	}
-	//FIXME delete this method
-	public void printGenre(){
-		MyLinkedListIterator<Genre> git = (MyLinkedListIterator<Genre>)this.iterator();
-
-		while(git.hasNext()){
-			Genre temp = git.next();
-			MyLinkedListIterator<String> sit = (MyLinkedListIterator<String>)temp.getTitles().iterator();
-			System.out.println(temp.toString());
-			while(sit.hasNext()){
-				System.out.println(sit.next());
-			}
-			
-		}
-	}*/
 }
